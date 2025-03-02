@@ -1,3 +1,4 @@
+# Projekt 1 - Datový analytik s Pythonem 23-1-2025
 # Texts to analyze
 TEXTS = [
     '''Situated about 10 miles west of Kemmerer,
