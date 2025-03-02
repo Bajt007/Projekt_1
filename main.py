@@ -72,13 +72,13 @@ if username in users and users[username] == password:
     number = int(input_text)
     if 1 <= number <= len(TEXTS):
             selected_text = TEXTS[number - 1]
-            print(selected_text)
+            #  print(selected_text)
 
     # modifying the string to form one line and splitting to single words   
     words = selected_text.replace('\n', ' ').split()
 
     total_words = 0
-    cap_words = 0
+    title_words = 0
     upper_words = 0
     lower_words = 0
     numbers = 0
@@ -101,13 +101,12 @@ if username in users and users[username] == password:
     
         if clean_word.isdigit():
             numbers += 1
-            sum_numbers += int(clean_word)
-        
+            sum_numbers += int(clean_word)       
         else:
-            if clean_word.isupper() and len(clean_word) > 1: 
+            if clean_word.isupper(): 
                 upper_words += 1
-            elif clean_word[0].isupper():  
-                cap_words += 1
+            elif clean_word[0].isupper() and clean_word[1:].islower():  
+                title_words += 1
             elif clean_word.islower(): 
                 lower_words += 1
 
@@ -119,10 +118,10 @@ if username in users and users[username] == password:
 
     # Print results
     print(f"There are {total_words} words in the selected text.")
-    print(f"There are {cap_words} titlecase words.")
+    print(f"There are {title_words} titlecase words.")
     print(f"There are {upper_words} uppercase words.")
     print(f"There are {lower_words} lowercase words.")
-    print(f"PThere are {numbers} numeric strings.")
+    print(f"There are {numbers} numeric strings.")
     print(f"The sum of all the numbers {sum_numbers} " )
 
     print (break_line)
