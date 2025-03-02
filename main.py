@@ -73,7 +73,7 @@ if username in users and users[username] == password:
     number = int(input_text)
     if 1 <= number <= len(TEXTS):
             selected_text = TEXTS[number - 1]
-            #  print (selected_text)
+            # print(selected_text)
 
     # modifying the string to form one line and splitting to single words   
     words = selected_text.replace('\n', ' ').split()
