@@ -1,3 +1,11 @@
+"""
+main.py: První projekt do Engeto Online Python Akademie, start January 23, 2025
+
+author:Richard Ryzí
+email: ryzi.richard@gmail.com
+"""
+
+
 # Projekt 1 - Datový analytik s Pythonem 23-1-2025
 # Texts to analyze
 TEXTS = [
@@ -38,13 +46,19 @@ users = {
 
 break_line = ("-" * 45)
 
-username = input("Enter user name: ")
+username = input("Enter user name: ").lower()
 password = input("Enter your password: ")
 
 print (break_line)
 
+users = {key.lower(): value for key, value in users.items()}
+
 if username not in users:
     print(f"Unregistered user, terminating the program... Bye.")
+    exit()
+
+if users[username] != password:
+    print("Incorrect password, terminating the program... Bye.")
     exit()
 
 if username in users and users[username] == password:
@@ -66,7 +80,7 @@ if username in users and users[username] == password:
         print("You didnt enter a number, terminating the program, bye.")
         exit()
 
-    if input_text.strip().isdigit() and input_text not in ["1", "2", "3"]:
+    if input_text not in ["1", "2", "3"]:
         print(f"Wrong Text number: {input_text}")
         exit()
       
@@ -130,10 +144,13 @@ if username in users and users[username] == password:
     print (break_line)
     
     # Sorted length list - ASC
+    """
     lengths_list = []
     for key in word_lengths:
         lengths_list.append(key)
-        sorted_lengths = sorted(lengths_list)
+    sorted_lengths = sorted(lengths_list)
+    """
+    sorted_lengths = sorted(word_lengths.keys())
 
     # simple bar chart
     for length in sorted_lengths:
