@@ -51,7 +51,15 @@ password = input("Enter your password: ")
 
 print (break_line)
 
+#  Dictionary comprehension - new dict created on iteration through current dict
 users = {key.lower(): value for key, value in users.items()}
+"""  above line equals:
+old_users = users.copy()
+for key, value in old_users.items():
+    users[key.lower()] = value
+    if key != key.lower():  # Pokud se klíč změnil
+        del users[key] 
+"""
 
 if username not in users:
     print(f"Unregistered user, terminating the program... Bye.")
@@ -62,7 +70,7 @@ if users[username] != password:
     exit()
 
 if username in users and users[username] == password:
-    print(f"Welcome to the app, {username}!")
+    print(f"Welcome to the app, {username.upper()}!")
     print(f"We have {len(TEXTS)} texts to be analyzed.")
 
     print (break_line)
@@ -79,12 +87,14 @@ if username in users and users[username] == password:
     if not input_text.strip().isdigit():
         print("You didnt enter a number, terminating the program, bye.")
         exit()
+    
+    number = int(input_text.strip())
 
-    if input_text not in ["1", "2", "3"]:
-        print(f"Wrong Text number: {input_text}")
+     # if number not in ["1", "2", "3"]: nasledujici je lepsi zapis
+    if number < 1 or number > len(TEXTS):
+        print(f"Wrong Text number: {input_text}, terminating the program, bye.")
         exit()
       
-    number = int(input_text)
     if 1 <= number <= len(TEXTS):
             selected_text = TEXTS[number - 1]
             #  print(selected_text)
@@ -153,7 +163,16 @@ if username in users and users[username] == password:
     sorted_lengths = sorted(word_lengths.keys())
 
     # simple bar chart
+    """
     for length in sorted_lengths:
       occurrences = word_lengths[length]
       stars = "*" * occurrences
       print(str(length).rjust(2) + "|" + stars.ljust(18) + "|" + str(occurrences))
+    """
+    # following bar chart is flexible
+    max_occurrences = max(word_lengths.values())
+    for length, occurrences in sorted(word_lengths.items()):
+        print(f"{length:2} | {'*' * occurrences:<{max_occurrences}} | {occurrences}")
+         # :<{max_occurrences} zarovná hvězdičky doleva na šířku největšího počtu výskytů.
+         # > zarovnání doprava.
+         # ^ zarovnání na střed.
